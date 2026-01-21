@@ -1,0 +1,37 @@
+# SEVAI - Sovereign Explainable Vertical AI Agent
+# Medical Domain AI Reasoning System with HIPAA Compliance
+
+# Core API clients (no GPU required)
+openai>=1.0.0              # For GPT-4 API
+anthropic>=0.5.0           # Alternative: Claude API
+pinecone-client>=2.2.0     # Vector store (free tier)
+sqlalchemy>=2.0.0          # Database ORM
+fastapi>=0.100.0           # Backend API
+uvicorn>=0.24.0            # ASGI server
+
+# Embeddings (lightweight, CPU-friendly)
+sentence-transformers>=2.2.0  # For embeddings
+
+# Causal & Graph
+networkx>=3.0              # Graph structures
+
+# Utilities
+pydantic>=2.0.0            # Data validation
+pydantic-settings>=2.0.0   # Settings management
+pytest>=7.4.0              # Testing
+pytest-cov>=4.1.0          # Coverage reports
+python-dotenv>=1.0.0       # Environment config
+pyyaml>=6.0                # Policy configs
+cryptography>=41.0.0       # Security & hashing
+
+# HTTP & Concurrency
+httpx>=0.25.0              # Async HTTP client
+aiofiles>=23.0.0           # Async file operations
+
+# Medical Domain Specific (Optional - install later)
+# medcat>=1.4.0            # Medical concept extraction
+
+# Development Tools
+black>=23.0.0              # Code formatting
+ruff>=0.1.0                # Linting
+mypy>=1.6.0                # Type checking

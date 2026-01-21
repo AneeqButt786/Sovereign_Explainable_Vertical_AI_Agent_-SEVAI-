@@ -1,0 +1,86 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.10", "3.11"]
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ matrix.python-version }}
+    
+    - name: Cache dependencies
+      uses: actions/cache@v3
+      with:
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+        restore-keys: |
+          ${{ runner.os }}-pip-
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+    
+    - name: Lint with ruff
+      run: |
+        ruff check .
+      continue-on-error: true
+    
+    - name: Format check with black
+      run: |
+        black --check .
+      continue-on-error: true
+    
+    - name: Type check with mypy
+      run: |
+        mypy core/ agents/ storage/ governance/ causal/ api/
+      continue-on-error: true
+    
+    - name: Run tests with pytest
+      env:
+        OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        PINECONE_API_KEY: ${{ secrets.PINECONE_API_KEY }}
+        PINECONE_ENVIRONMENT: test
+        PINECONE_INDEX_NAME: sevai-test
+        SECRET_KEY: test-secret-key-for-ci
+      run: |
+        pytest tests/ -v --cov --cov-report=xml --cov-report=term-missing
+    
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v3
+      with:
+        file: ./coverage.xml
+        fail_ci_if_error: false
+  
+  security:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: "3.10"
+    
+    - name: Install bandit
+      run: pip install bandit[toml]
+    
+    - name: Run security scan
+      run: |
+        bandit -r . -f json -o bandit-report.json || true
+        bandit -r . -f screen
+      continue-on-error: true

@@ -1,0 +1,37 @@
+Patient presents with acute onset of high fever (102°F), persistent dry cough, and shortness of breath that started 3 days ago. 
+
+Medical History:
+- 45-year-old male
+- No known allergies
+- Non-smoker
+- Hypertension controlled with medication
+
+Current Symptoms:
+- Fever (102°F/38.9°C)
+- Dry cough, worse at night
+- Difficulty breathing, especially on exertion
+- Fatigue and body aches
+- No chest pain
+
+Physical Examination:
+- Respiratory rate elevated (22 breaths/min)
+- Oxygen saturation 94% on room air
+- Bilateral lung crackles on auscultation
+- No wheezing
+
+Laboratory Tests:
+- White blood cell count: elevated (14,000/μL)
+- C-reactive protein: elevated
+- Chest X-ray: bilateral infiltrates
+
+Preliminary Diagnosis:
+- Community-acquired pneumonia likely
+- Viral vs. bacterial etiology to be determined
+
+Treatment Plan:
+- Empiric antibiotic therapy initiated (azithromycin)
+- Supportive care with antipyretics
+- Close monitoring of oxygen saturation
+- Follow-up chest X-ray in 48 hours
+
+Patient advised to rest, maintain hydration, and return if symptoms worsen or new symptoms develop (chest pain, severe difficulty breathing).
